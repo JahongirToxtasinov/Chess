@@ -38,6 +38,11 @@ abstract class AppTheme {
           fontWeight: FontWeight.w700,
           color: white,
         ),
+          labelLarge: GoogleFonts.acme(
+              fontSize: 40,
+              fontWeight: FontWeight.w700,
+              color: white,
+          ),
           displayMedium: GoogleFonts.abel(
             fontSize: 24,
             fontWeight: FontWeight.w600,

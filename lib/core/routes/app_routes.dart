@@ -14,7 +14,7 @@ class AppRouter {
       case AppRoutes.splash:
         return fade(const SplashScreen());
       case AppRoutes.home:
-        return fade(const HomeScreen());
+        return fade(const MainScreen());
       case AppRoutes.onboarding:
         return fade(const OnboardingScreen());
       case AppRoutes.comingSoon:

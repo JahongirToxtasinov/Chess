@@ -74,9 +74,10 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+    - assets/images/
     - assets/icons/onboarding/
     - assets/images/onboarding/
-    - assets/images/
+    - assets/images/mainMenu/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
