@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.only(top: 40,right: 16),
                 child: Text(
                   'SKIP',
                   style: Theme.of(context).textTheme.labelMedium,
@@ -57,6 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
               controller: pageController,
               children: [
+
                 Column(
                   children: [
                     Expanded(
@@ -155,14 +156,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       );
                     },
                     child: Container(
-                      width: 44,
-                      height: 44,
+                      width: 60,
+                      height: 60,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: blue,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: SvgPicture.asset(AppIcons.next),
+                      child: SvgPicture.asset(AppIcons.back),
                     ),
                   )
                 else
@@ -172,11 +173,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   count: 4,
                   effect: ExpandingDotsEffect(
                     activeDotColor: blue,
-                    dotWidth: 8,
-                    dotHeight: 8,
+                    dotWidth: 14,
+                    dotHeight: 14,
                     dotColor: blue.withOpacity(.32),
                     expansionFactor: 3,
-                    spacing: 4,
+                    spacing: 6,
                   ),
                 ),
                 WScale(
@@ -192,8 +193,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     }
                   },
                   child: Container(
-                    width: 44,
-                    height: 44,
+                    width: 60,
+                    height: 60,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: blue,

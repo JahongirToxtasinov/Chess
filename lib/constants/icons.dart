@@ -15,6 +15,8 @@ abstract class AppIcons {
   static const back = '$_onboardingIcons/back.svg';
 
   static const comingSoon = 'assets/images/coming.png';
+  static const mainMenu = 'assets/images/mainMenu.png';
+
 
   static const logo = '$_global/logo.svg';
 }
