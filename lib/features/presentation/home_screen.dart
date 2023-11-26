@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
               ),
               const Gap(12),
               MainButton(
-                  destination: AppRoutes.comingSoon,
+                  destination: AppRoutes.twoPlayerMode,
                   text: "TWO PLAYER"
               ),
               const Gap(12),

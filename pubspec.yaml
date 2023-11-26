@@ -75,6 +75,8 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
+    - assets/images/piece/
+    - assets/images/boardDesign/
     - assets/icons/onboarding/
     - assets/images/onboarding/
     - assets/images/mainMenu/
