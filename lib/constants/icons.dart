@@ -26,6 +26,10 @@ abstract class AppIcons {
 
   static const boardBlack = '$_boardDesign/boardB.png';
   static const boardWhite = '$_boardDesign/boardW.png';
+  static const boardSelected = '$_boardDesign/boardSelected.png';
+  static const boardSelectedDirect = '$_boardDesign/boardSelectedDirect.png';
+
+
 
 
 
