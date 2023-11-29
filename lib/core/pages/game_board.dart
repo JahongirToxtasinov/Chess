@@ -45,6 +45,13 @@ class _GameBoardState extends State<GameBoard> {
   // a list of black pieces that have been taken by the white player
   List<ChessPiece> blackPiecesTaken = [];
 
+  // A bool to indicate whose turn it is
+  bool isWhiteTurn = true;
+
+  // initial position of kings (keep track of this to make later to see if king is in check)
+  List<int> whiteKingPosition = [7,4];
+  List<int> blackKingPosition = [0,4];
+  bool checkStatus = false;
 
   @override
   void initState() {
@@ -170,9 +177,11 @@ class _GameBoardState extends State<GameBoard> {
     setState(() {
      // NO piece has been selected yet, this is the first selection
       if (selectedPiece == null && board[row][col] != null) {
-        selectedPiece = board[row][col];
-        selectedRow = row;
-        selectedCol = col;
+        if (board[row][col]!.isWhite == isWhiteTurn) {
+          selectedPiece = board[row][col];
+          selectedRow = row;
+          selectedCol = col;
+        }
       }
 
       // There is a piece already selected, but user can selected another one of their pieces
@@ -405,6 +414,13 @@ class _GameBoardState extends State<GameBoard> {
     board[newRow][newCol] = selectedPiece;
     board[selectedRow][selectedCol] = null;
 
+    // see if any kings are under attack
+    if (isKingInCheck(!isWhiteTurn)) {
+      checkStatus = true;
+    } else {
+      checkStatus = false;
+    }
+
     // clear the selection
     setState(() {
       selectedPiece = null;
@@ -412,6 +428,36 @@ class _GameBoardState extends State<GameBoard> {
       selectedCol = -1;
       validMoves = [];
     });
+
+    // change turns
+    isWhiteTurn = !isWhiteTurn;
+  }
+
+  // IS KING IN CHECK
+  bool isKingInCheck(bool isWhiteKing){
+    // get the position of the king
+    List<int> kingPosition =
+        isWhiteKing ? whiteKingPosition : blackKingPosition;
+
+    // check if any enemy piece can attack the king
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        // skip empty squares and pieces of the same color as the king
+        if (board[i][j] == null || board[i][j]!.isWhite == isWhiteKing) {
+          continue;
+        }
+
+        List<List<int>> pieceValidMoves =
+            calculatedRawValidMoves(i, j, board[i][j]);
+
+        // check if the king's position is in this piece's valid moves
+        if (pieceValidMoves.any((move) =>
+        move[0] == kingPosition[0] && move[1] == kingPosition[1])) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   @override
@@ -440,6 +486,9 @@ class _GameBoardState extends State<GameBoard> {
             ],
           ),
           SizedBox(height: 10,),
+
+          // Game status
+          Text(checkStatus ? "CHECK!" : ""),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
