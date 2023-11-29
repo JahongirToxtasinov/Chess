@@ -24,6 +24,7 @@ abstract class AppIcons {
   static const mainWidget = '$_mainMenu/mainWidget.png';
   static const mainButton = '$_mainMenu/mainButton.png';
 
+  static const mainBoard = '$_boardDesign/mainBoard.png';
   static const boardBlack = '$_boardDesign/boardB.png';
   static const boardWhite = '$_boardDesign/boardW.png';
   static const boardSelected = '$_boardDesign/boardSelected.png';

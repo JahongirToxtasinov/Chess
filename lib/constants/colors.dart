@@ -18,6 +18,7 @@ const secondaryColorLight = _secLightC;
 const errorColor = _pinkishRed;
 const errorColorLight = _errorC;
 var bodySmallTextColor = _whitish.withOpacity(0.5);
+const whiteBoardColor = _col;
 // Color Palatte
 
 
@@ -35,3 +36,4 @@ const _pinkishRed = Color(0xFFFF2752);
 const _c12CEFF = Color(0xFF12CEFF);
 const _errorC = Color(0xFFFF0000);
 const _secLightC = Color(0xFFE4E4E4);
+const _col = Color.fromRGBO(235, 205, 162, 1);

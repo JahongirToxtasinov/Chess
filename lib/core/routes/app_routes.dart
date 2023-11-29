@@ -13,7 +13,7 @@ class AppRouter {
   static Route<dynamic> router(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.splash:
-        return fade(const TwoPlayerMode()); //TODO
+        return fade(const TwoPlayerMode());
       case AppRoutes.home:
         return fade(const MainScreen());
       case AppRoutes.onboarding:

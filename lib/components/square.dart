@@ -21,7 +21,6 @@ class Square extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Image? squareColor;
-
     // if selected square is green
     if(isSelected){
       squareColor = Image.asset(AppIcons.boardSelected);
@@ -31,17 +30,14 @@ class Square extends StatelessWidget {
     }
     else{
       squareColor = Image.asset(isWhite == true ? AppIcons.boardWhite : AppIcons.boardBlack);
-
     }
 
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        // color: squareColor.color,
         child: Stack(
           children: [
             squareColor,
-            // Image.asset( isWhite ? AppIcons.boardWhite : AppIcons.boardBlack),
             Container(width: 180,height: 180,
                 child: isWhite ?
                 piece != null ? Image.asset(piece!.imagePath) : null
