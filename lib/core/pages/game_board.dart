@@ -457,6 +457,25 @@ class _GameBoardState extends State<GameBoard> {
       validMoves = [];
     });
 
+    // check if it's check mate
+    if (isCheckMate(!isWhiteTurn)) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("CHECK MATE!"),
+          actions: [
+            // play again button
+            TextButton(
+                onPressed: resetGame,
+                child: Text("REVENGE",
+                  style: TextStyle(
+                      color: Colors.blue,fontSize: 14),))
+          ],
+        ),
+
+      );
+    }
+
     // change turns
     isWhiteTurn = !isWhiteTurn;
   }
@@ -529,6 +548,46 @@ class _GameBoardState extends State<GameBoard> {
 
     // if king is in check = true, means it's not a safe move = false
     return !kingInCheck;
+  }
+
+  // IS IT CHECK MATE?
+  bool isCheckMate(bool isWhiteKing) {
+    // if the king is not in check, then it's not checkmate
+    if (!isKingInCheck(isWhiteKing)) {
+      return false;
+    }
+    // if there is at least one legal move for any of the player's pieces, then it's not checkmate
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        // skip empty squares and pieces of the other color
+        if (board[i][j] == null || board[i][j]!.isWhite != isWhiteKing) {
+          continue;
+        }
+        List<List<int>> pieceValidMoves =
+            calculatedRealValidMoves(i, j, board[i][j], true);
+
+        // if this piece has any valid moves, then it's not checkmate
+        if (pieceValidMoves.isNotEmpty) {
+          return false;
+        }
+      }
+    }
+    // if none of the above conditions are met, then are no legal moves left to make
+    // it's check mate!
+    return true;
+  }
+
+  // RESTART GAME
+  void resetGame() {
+    Navigator.pop(context);
+    _initializeBoard();
+    checkStatus = false;
+    whitePiecesTaken.clear();
+    blackPiecesTaken.clear();
+    whiteKingPosition = [7,4];
+    blackKingPosition = [0,4];
+    isWhiteTurn = true;
+    setState(() {});
   }
 
   @override
