@@ -14,10 +14,10 @@ class AppRouter {
     switch (settings.name) {
       case AppRoutes.splash:
         return fade(const TwoPlayerMode());
-      case AppRoutes.home:
-        return fade(const MainScreen());
       case AppRoutes.onboarding:
         return fade(const OnboardingScreen());
+      case AppRoutes.home:
+        return fade(const MainScreen());
       case AppRoutes.comingSoon:
         return fade(const ComingSoon());
       case AppRoutes.twoPlayerMode:

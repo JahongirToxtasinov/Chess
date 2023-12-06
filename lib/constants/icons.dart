@@ -51,6 +51,21 @@ abstract class PieceIcons {
   static const rookW = '$_pieceDesign/whiteRook.png';
   static const queenW = '$_pieceDesign/whiteQueen.png';
   static const kingW = '$_pieceDesign/whiteKing.png';
+}
 
-
+abstract class BlackPiecePath {
+  static const pawn = '$_pieceDesign/blackPawn.png';
+  static const knight = '$_pieceDesign/blackKnight.png';
+  static const bishop = '$_pieceDesign/blackBishop.png';
+  static const rook = '$_pieceDesign/blackRook.png';
+  static const queen = '$_pieceDesign/blackQueen.png';
+  static const king = '$_pieceDesign/blackKing.png';
+}
+abstract class WhitePiecePath {
+  static const pawn = '$_pieceDesign/whitePawn.png';
+  static const knight = '$_pieceDesign/whiteKnight.png';
+  static const bishop = '$_pieceDesign/whiteBishop.png';
+  static const rook = '$_pieceDesign/whiteRook.png';
+  static const queen = '$_pieceDesign/whiteQueen.png';
+  static const king = '$_pieceDesign/whiteKing.png';
 }
