@@ -10,101 +10,101 @@ List<List<ChessPiece?>> initializeBoard() {
     newBoard[1][i] = ChessPiece(
         type: ChessPieceType.pawn,
         isWhite: false,
-        imagePath: PieceIcons.pawnB
+        imagePath: BlackPiecePath.pawn
     );
     newBoard[6][i] = ChessPiece(
         type: ChessPieceType.pawn,
         isWhite: true,
-        imagePath: PieceIcons.pawnW);
+        imagePath: WhitePiecePath.pawn);
   }
   // Place rooks
   newBoard[0][0] = ChessPiece(
       type: ChessPieceType.rook,
       isWhite: false,
-      imagePath: PieceIcons.rookB
+      imagePath: BlackPiecePath.rook
   );
   newBoard[0][7] = ChessPiece(
       type: ChessPieceType.rook,
       isWhite: false,
-      imagePath: PieceIcons.rookB
+      imagePath: BlackPiecePath.rook
   );
   newBoard[7][0] = ChessPiece(
       type: ChessPieceType.rook,
       isWhite: true,
-      imagePath: PieceIcons.rookW
+      imagePath: WhitePiecePath.rook
   );
   newBoard[7][7] = ChessPiece(
       type: ChessPieceType.rook,
       isWhite: true,
-      imagePath: PieceIcons.rookW
+      imagePath: WhitePiecePath.rook
   );
 
   // Place knights
   newBoard[0][1] = ChessPiece(
       type: ChessPieceType.knight,
       isWhite: false,
-      imagePath: PieceIcons.knightB
+      imagePath: BlackPiecePath.knight
   );
   newBoard[0][6] = ChessPiece(
       type: ChessPieceType.knight,
       isWhite: false,
-      imagePath: PieceIcons.knightB
+      imagePath: BlackPiecePath.knight
   );
   newBoard[7][1] = ChessPiece(
       type: ChessPieceType.knight,
       isWhite: true,
-      imagePath: PieceIcons.knightW
+      imagePath: WhitePiecePath.knight
   );
   newBoard[7][6] = ChessPiece(
       type: ChessPieceType.knight,
       isWhite: true,
-      imagePath: PieceIcons.knightW
+      imagePath: WhitePiecePath.knight
   );
 
   // Place bishops
   newBoard[0][2] = ChessPiece(
       type: ChessPieceType.bishop,
       isWhite: false,
-      imagePath: PieceIcons.bishopB
+      imagePath: BlackPiecePath.bishop
   );
   newBoard[0][5] = ChessPiece(
       type: ChessPieceType.bishop,
       isWhite: false,
-      imagePath: PieceIcons.bishopB
+      imagePath: BlackPiecePath.bishop
   );
   newBoard[7][2] = ChessPiece(
       type: ChessPieceType.bishop,
       isWhite: true,
-      imagePath: PieceIcons.bishopW
+      imagePath: WhitePiecePath.bishop
   );
   newBoard[7][5] = ChessPiece(
       type: ChessPieceType.bishop,
       isWhite: true,
-      imagePath: PieceIcons.bishopW
+      imagePath: WhitePiecePath.bishop
   );
 
   // Place queens
   newBoard[0][3] = ChessPiece(
       type: ChessPieceType.queen,
       isWhite: false,
-      imagePath: PieceIcons.queenB
+      imagePath: BlackPiecePath.queen
   );
   newBoard[7][3] = ChessPiece(
       type: ChessPieceType.queen,
       isWhite: true,
-      imagePath: PieceIcons.queenW
+      imagePath: WhitePiecePath.queen
   );
 
   // Place kings
   newBoard[0][4] = ChessPiece(
       type: ChessPieceType.king,
       isWhite: false,
-      imagePath: PieceIcons.kingB
+      imagePath: BlackPiecePath.king
   );
   newBoard[7][4] = ChessPiece(
       type: ChessPieceType.king,
       isWhite: true,
-      imagePath: PieceIcons.kingW
+      imagePath: WhitePiecePath.king
   );
 
   return newBoard;

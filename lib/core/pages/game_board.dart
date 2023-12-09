@@ -6,9 +6,9 @@ import 'package:chess/constants/icons.dart';
 import 'package:chess/core/widgets/w_scale.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/dead_piece.dart';
 import '../functions/helper_functions.dart';
 import '../functions/initialize_board.dart';
+import '../widgets/taken_pieces_widget.dart';
 
 class GameBoard extends StatefulWidget {
   const GameBoard({super.key});
@@ -68,6 +68,7 @@ class _GameBoardState extends State<GameBoard> {
       // NO piece has been selected yet, this is the first selection
       if (selectedPiece == null && board[row][col] != null) {
         if (board[row][col]!.isWhite == isWhiteTurn) {
+          // print('correct selected');
           selectedPiece = board[row][col];
           selectedRow = row;
           selectedCol = col;
@@ -77,6 +78,7 @@ class _GameBoardState extends State<GameBoard> {
       // There is a piece already selected, but user can selected another one of their pieces
       else if (board[row][col] != null &&
           board[row][col]!.isWhite == selectedPiece!.isWhite) {
+        // print("other piece selected");
         selectedPiece = board[row][col];
         selectedRow = row;
         selectedCol = col;
@@ -86,6 +88,7 @@ class _GameBoardState extends State<GameBoard> {
       is a valid move, move there */
       else if(selectedPiece != null &&
           validMoves.any((element) => element[0] == row && element[1] == col)){
+
         movePiece(row, col);
       }
 
@@ -353,6 +356,10 @@ class _GameBoardState extends State<GameBoard> {
       });
     }
 
+
+
+
+
     // if the new spot as an enemy piece
     if (board[newRow][newCol] != null) {
       // add the captured piece to the appropirate list
@@ -376,6 +383,8 @@ class _GameBoardState extends State<GameBoard> {
 
     // move the piece and clear the old spot
     board[newRow][newCol] = selectedPiece;
+    // print("old position ${board[selectedRow][selectedCol]} \n $selectedPiece \n$selectedRow $selectedCol");
+    // print("nes position ${board[newRow][newCol]} \n $selectedPiece \n$newRow $newCol");
     board[selectedRow][selectedCol] = null;
 
     // see if any kings are under attack
@@ -398,7 +407,8 @@ class _GameBoardState extends State<GameBoard> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Center(child: Text("CHECK MATE!\n ${!isWhiteTurn ? 'WHITE WIN' : 'BLACK WIN'}")),
+          title: Center(child: Text("CHECK MATE!\n ${!isWhiteTurn ? 'WHITE WIN' : 'BLACK WIN'}"),
+          ),
           actions: [
             // play again button
             TextButton(
@@ -409,6 +419,23 @@ class _GameBoardState extends State<GameBoard> {
           ],
         ),
 
+      );
+    }
+
+    if (isDraw()) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Center(child: Text("DRAW!")),
+          actions: [
+            TextButton(
+                onPressed: resetGame,
+                child: Text("REVENGE",
+                  style: TextStyle(
+                      color: Colors.blue,fontSize: 14),))
+            // Add your draw-related actions or buttons here
+          ],
+        ),
       );
     }
 
@@ -470,9 +497,6 @@ class _GameBoardState extends State<GameBoard> {
       },
     );
   }
-
-
-
 
   // IS KING IN CHECK
   bool isKingInCheck(bool isWhiteKing){
@@ -571,6 +595,39 @@ class _GameBoardState extends State<GameBoard> {
     return true;
   }
 
+// Check for draw conditions
+  bool isDraw() {
+    // Example: Stalemate
+    bool noValidMovesLeft = true;
+
+    // Iterate through all pieces of the current player
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        if (board[i][j] != null && board[i][j]!.isWhite == isWhiteTurn) {
+          List<List<int>> pieceValidMoves =
+          calculatedRealValidMoves(i, j, board[i][j], true);
+
+          // If there's at least one valid move, it's not a stalemate
+          if (pieceValidMoves.isNotEmpty) {
+            noValidMovesLeft = false;
+            break;
+          }
+        }
+      }
+      if (!noValidMovesLeft) {
+        break;
+      }
+    }
+
+    // Example: Insufficient material for checkmate
+    bool insufficientMaterial = false;
+
+    // Your implementation to check for insufficient material goes here
+
+    // Return true if any draw conditions are met
+    return noValidMovesLeft || insufficientMaterial;
+  }
+
   // RESTART GAME
   void resetGame() {
     Navigator.pop(context);
@@ -593,22 +650,10 @@ class _GameBoardState extends State<GameBoard> {
         // Game status
         Text(checkStatus ? "CHECK!" : ""),
         // WHITE PIECES TAKEN
-        Row(mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(width: 430,height: 30,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: whiteBoardColor,),
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: whitePiecesTaken.length,
-                gridDelegate: const
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 16),
-                itemBuilder: (context, index) => DeadPiece(
-                  imagePath: whitePiecesTaken[index].imagePath,
-                  isWhite: true,
-                ),
-              ),
-            ),
-          ],
+        TakenPieces(
+            widgetColor: whiteBoardColor,
+            wItemCount: whitePiecesTaken,
+            colorPiecesTaken: whitePiecesTaken
         ),
         SizedBox(height: 10,),
 
@@ -660,22 +705,10 @@ class _GameBoardState extends State<GameBoard> {
         ),
         SizedBox(height: 10,),
         // BLACK PIECES TAKEN
-        Row(mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(width: 430,height: 30,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: whiteBoardColor,),
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: blackPiecesTaken.length,
-                gridDelegate: const
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 16),
-                itemBuilder: (context, index) => DeadPiece(
-                  imagePath: blackPiecesTaken[index].imagePath,
-                  isWhite: true,
-                ),
-              ),
-            ),
-          ],
+        TakenPieces(
+            widgetColor: whiteBoardColor,
+            wItemCount: blackPiecesTaken,
+            colorPiecesTaken: blackPiecesTaken
         ),
       ],
     );

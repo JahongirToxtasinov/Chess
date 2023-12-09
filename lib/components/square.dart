@@ -29,7 +29,8 @@ class Square extends StatelessWidget {
       squareColor = Image.asset(AppIcons.boardSelectedDirect);
     }
     else{
-      squareColor = Image.asset(isWhite == true ? AppIcons.boardWhite : AppIcons.boardBlack);
+      squareColor = Image.asset(AppIcons.nullBoard);
+      // squareColor = null;
     }
 
     return GestureDetector(

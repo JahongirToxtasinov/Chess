@@ -25,32 +25,12 @@ abstract class AppIcons {
   static const mainButton = '$_mainMenu/mainButton.png';
 
   static const mainBoard = '$_boardDesign/mainBoard.png';
-  static const boardBlack = '$_boardDesign/boardB.png';
-  static const boardWhite = '$_boardDesign/boardW.png';
+  static const nullBoard = '$_boardDesign/nullBoard.png';
   static const boardSelected = '$_boardDesign/boardSelected.png';
   static const boardSelectedDirect = '$_boardDesign/boardSelectedDirect.png';
 
 
-
-
-
-
   static const logo = '$_global/logo.svg';
-}
-abstract class PieceIcons {
-  static const pawnB = '$_pieceDesign/blackPawn.png';
-  static const knightB = '$_pieceDesign/blackKnight.png';
-  static const bishopB = '$_pieceDesign/blackBishop.png';
-  static const rookB = '$_pieceDesign/blackRook.png';
-  static const queenB = '$_pieceDesign/blackQueen.png';
-  static const kingB = '$_pieceDesign/blackKing.png';
-
-  static const pawnW = '$_pieceDesign/whitePawn.png';
-  static const knightW = '$_pieceDesign/whiteKnight.png';
-  static const bishopW = '$_pieceDesign/whiteBishop.png';
-  static const rookW = '$_pieceDesign/whiteRook.png';
-  static const queenW = '$_pieceDesign/whiteQueen.png';
-  static const kingW = '$_pieceDesign/whiteKing.png';
 }
 
 abstract class BlackPiecePath {
