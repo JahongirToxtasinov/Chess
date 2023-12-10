@@ -442,7 +442,6 @@ class _GameBoardState extends State<GameBoard> {
     // change turns
     isWhiteTurn = !isWhiteTurn;
   }
-
   // Method to show the promotion dialog
   Future<ChessPieceType?> _showPromotionDialog(bool isWhite) async {
     return showDialog<ChessPieceType>(
